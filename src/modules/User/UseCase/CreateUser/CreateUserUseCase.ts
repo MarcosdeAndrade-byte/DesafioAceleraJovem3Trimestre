@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { IUserRepository } from '../../Infra/MongoDB/IUserRepository';
+import { hash } from 'bcryptjs';
 
 @injectable()
 class CreateUserUseCase {
@@ -9,7 +10,8 @@ class CreateUserUseCase {
     ) {}
 
     async execute(name: string, email: string, password: string): Promise<void> {
-        this.userRepository.createUser(name,email,password);
+        const passwordHash = await hash(password, 8);
+        this.userRepository.createUser(name,email,passwordHash);
     }
 }
 
