@@ -1,0 +1,14 @@
+{
+  "name": "desafioterceirotrimestre",
+  "version": "1.0.0",
+  "description": "Desafio relativo ao terceiro trimestre do programa acelera jovem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcos Alexandre",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}
