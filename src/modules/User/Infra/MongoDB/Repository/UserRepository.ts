@@ -1,4 +1,4 @@
-import { FindOneAndUpdateOptions, ObjectId, ReturnDocument } from 'mongodb';
+import { FindOneAndUpdateOptions, ObjectId } from 'mongodb';
 import { connect } from '../../../../../shared/mongodb';
 import { RefreshArray, User } from '../../../Entities/User';
 import { IUserRepository } from '../IUserRepository';
