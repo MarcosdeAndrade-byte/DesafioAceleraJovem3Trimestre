@@ -31,9 +31,9 @@ class LoginUserUseCase {
             throw new Error('Senha ou email incorretos');
         }
 
-        const token = jwt.sign({},'SEGREDO',{
+        const token = jwt.sign({ email },'SEGREDO',{
             subject: String(userByEmail._id),
-            expiresIn: '2m',
+            expiresIn: '20s',
         });
 
         const refresh_token = jwt.sign({ email },'RefreshToken',{
