@@ -8,8 +8,8 @@ class CreateTaskUseCase {
         private taskRepository: ITaskRepository
     ) {}
 
-    async execute(title: string, description: string, done: boolean, created_at: Date, updated_at: Date): Promise<void> {
-        this.taskRepository.createTask(title, description, done, created_at, updated_at);
+    async execute(userId: string, title: string, description: string, done: boolean, created_at: Date, updated_at: Date): Promise<void> {
+        this.taskRepository.createTask(userId, title, description, done, created_at, updated_at);
     }
 }
 
