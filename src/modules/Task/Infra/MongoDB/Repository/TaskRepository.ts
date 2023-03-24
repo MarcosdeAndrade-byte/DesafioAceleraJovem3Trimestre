@@ -1,11 +1,19 @@
+import { ObjectId } from 'mongodb';
 import { connect } from '../../../../../shared/mongodb';
 import { Task } from '../../../Entities/Task';
 import { ITaskRepository } from '../ITaskRepository';
 
 class TaskRepository implements ITaskRepository{
+    async listTaskById(taskId: string): Promise<Task> {
+        const db = await connect();
+        const filter = {_id: new ObjectId(taskId)};
+        const task = await db.collection('Tasks').findOne(filter) as unknown as Task;
+        return task;
+    }
+
     async listTask(userId: string, title: string): Promise<Task[]> {
         const db = await connect();
-        await db.collection('tasks').createIndex({ title: 'text' });
+        await db.collection('Tasks').createIndex({ title: 'text' });
         const filter = { $text: { $search: title } };
 
         const tasks = await db.collection('Tasks').find(filter).toArray()  as unknown as Task[];
