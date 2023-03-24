@@ -16,6 +16,8 @@ async function connect() {
     console.log('Connected successfully to server');
     singleton = client.db(dbName);
 
+    await singleton.collection('Tasks').createIndex({ title: 'text' });
+
     return singleton;
 }
 
