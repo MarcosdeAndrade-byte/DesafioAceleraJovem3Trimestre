@@ -4,6 +4,12 @@ import { Task } from '../../../Entities/Task';
 import { ITaskRepository } from '../ITaskRepository';
 
 class TaskRepository implements ITaskRepository{
+    async deleteTaskById(taskId: string, userId: string): Promise<void> {
+        const db = await connect();
+        const filter = {_id: new ObjectId(taskId), userId: userId};
+        await db.collection('Tasks').findOneAndDelete(filter);
+    }
+
     async updatedTask(userId: string, taskId: string, title: string, description: string, done: boolean): Promise<void> {
         const db = await connect();
         const filter = {_id: new ObjectId(taskId), userId: userId};
