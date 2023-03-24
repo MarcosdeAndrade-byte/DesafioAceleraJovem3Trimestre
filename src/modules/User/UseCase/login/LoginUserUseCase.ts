@@ -33,7 +33,7 @@ class LoginUserUseCase {
 
         const token = jwt.sign({ email },'SEGREDO',{
             subject: String(userByEmail._id),
-            expiresIn: '20s',
+            expiresIn: '2m',
         });
 
         const refresh_token = jwt.sign({ email },'RefreshToken',{

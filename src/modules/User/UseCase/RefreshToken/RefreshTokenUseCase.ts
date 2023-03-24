@@ -31,7 +31,7 @@ class RefreshTokenUseCase {
 
         const JWTToken = jwt.sign({ email },'SEGREDO', {
             subject: String(user._id),
-            expiresIn: '20s',
+            expiresIn: '2m',
         });
 
         const refreshToken = sign({ email }, 'RefreshToken', {

@@ -11,6 +11,11 @@ class ListTaskByIdUseCase {
 
     async execute(userId: string): Promise<Task> {
         const tasks = await this.taskRepository.listTaskById(userId);
+
+        if(!tasks) {
+            throw new Error('Task não encontrada!');
+        }
+
         return tasks;
     }
 }

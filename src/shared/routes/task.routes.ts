@@ -4,6 +4,7 @@ import { DeleteTaskController } from '../../modules/Task/UseCase/DeleteTask/Dele
 import { ListTaskController } from '../../modules/Task/UseCase/ListTask/ListTaskController';
 import { ListTaskByIdController } from '../../modules/Task/UseCase/ListTaskById/ListTaskByIdController';
 import { UpdatedTaskController } from '../../modules/Task/UseCase/UpdateTask/UpdateTaskController';
+import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
 const routerTasks = Router();
 
@@ -12,6 +13,8 @@ const listTaskController = new ListTaskController();
 const listTaskByIdController = new ListTaskByIdController();
 const updatedTaskController = new UpdatedTaskController();
 const deleteTaskController = new DeleteTaskController();
+
+routerTasks.use(ensureAuthenticated);
 
 routerTasks.post('/', createTaskController.handle);
 routerTasks.get('/', listTaskController.handle);

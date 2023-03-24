@@ -30,6 +30,12 @@ export async function ensureAuthenticated(
         if(!user) {
             throw new Error('Token inválido');
         }
+
+        request.user = {
+            userId: sub,
+            email: email,
+        };
+
     } catch (error) {
         return response.status(400).json(error);
     }
