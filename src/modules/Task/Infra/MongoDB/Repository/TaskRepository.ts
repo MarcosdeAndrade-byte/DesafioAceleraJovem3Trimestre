@@ -17,10 +17,10 @@ class TaskRepository implements ITaskRepository{
         await db.collection('Tasks').findOneAndDelete(filter);
     }
 
-    async updatedTask(userId: string, taskId: string, title: string, description: string, done: boolean): Promise<void> {
+    async updatedTask(userId: string, taskId: string, title: string, description: string, done: boolean, updated_at: Date): Promise<void> {
         const db = await connect();
         const filter = {_id: new ObjectId(taskId), userId: userId};
-        const update = {  $set: { title: title, description: description, done: done } };
+        const update = {  $set: { title: title, description: description, done: done, updated_at: updated_at } };
         db.collection('Tasks').findOneAndUpdate(filter,update);
     }
 

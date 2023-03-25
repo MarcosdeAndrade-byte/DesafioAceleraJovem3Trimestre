@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { adjustDateForLocalTimezone } from '../../../../shared/provider/DateProvider/DateProvider';
 import { ITaskRepository } from '../../Infra/MongoDB/ITaskRepository';
 
 @injectable()
@@ -9,7 +10,10 @@ class UpdatedTaskUseCase {
     ) {}
 
     async execute(userId: string, taskId: string, title: string, description: string, done: boolean): Promise<void> {
-        await this.taskRepository.updatedTask(userId, taskId, title, description, done);
+
+        const { updated_at } = adjustDateForLocalTimezone(new Date());
+
+        await this.taskRepository.updatedTask(userId, taskId, title, description, done, updated_at);
     }
 }
 
