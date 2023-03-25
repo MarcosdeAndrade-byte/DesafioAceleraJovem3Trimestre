@@ -22,7 +22,7 @@ Conhecimento básico em ambientes de desenvolvimento e banco de dados
 Depois de ter clonado ou baixado o arquivo:
 
 ```
-git clone -> npm install  -> npx husky install -> [instalar banco de dados mongodb](https://www.mongodb.com/try/download/community)
+git clone -> npm install  -> npx husky install -> [instalar banco de dados mongodb](https://www.mongodb.com/try/download/community) -> npm run dev
 ```
 ## 🛠️ Construído com
 
