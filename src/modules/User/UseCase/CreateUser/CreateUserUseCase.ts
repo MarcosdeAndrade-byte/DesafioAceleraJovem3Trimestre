@@ -10,6 +10,12 @@ class CreateUserUseCase {
     ) {}
 
     async execute(name: string, email: string, password: string): Promise<void> {
+        const userVerificationExist = await this.userRepository.findUserByEmail(email);
+
+        if(userVerificationExist){
+            throw new Error('Esse email já foi cadastrado!');
+        }
+
         const passwordHash = await hash(password, 8);
         this.userRepository.createUser(name,email,passwordHash);
     }
