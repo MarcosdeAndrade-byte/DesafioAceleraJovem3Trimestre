@@ -31,13 +31,29 @@ class TaskRepository implements ITaskRepository{
         return task;
     }
 
-    async listTask(userId: string, title: string): Promise<Task[]> {
+    async findTasksByTitleOrStatus(userId: string, title: string, done: boolean): Promise<Task[]> {
         const db = await connect();
-        await db.collection('Tasks').createIndex({ title: 'text' });
-        const filter = { $text: { $search: title } };
+
+        const filter = {};
+        if (title !==  undefined) {
+            Object.assign(filter, { $text: { $search: title } });
+        } 
+
+        if (done === true) {
+            Object.assign(filter, { done: true });
+        }
 
         const tasks = await db.collection('Tasks').find(filter).toArray()  as unknown as Task[];
-        const taskFilterDone = tasks.filter((task) => (task.done === true) && (task.userId === userId));
+
+        const taskFilterDone = tasks.filter((task) => {
+            if (task.userId === userId) {
+                return true;
+            }
+
+            if (task.userId === userId) {
+                return true;
+            }
+        });
 
         return taskFilterDone;
     }

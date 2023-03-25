@@ -9,8 +9,8 @@ class ListTaskUseCase {
         private taskRepository: ITaskRepository
     ) {}
 
-    async execute(userId: string, title: string): Promise<Task[]> {
-        const tasks = await this.taskRepository.listTask(userId,title);
+    async execute(userId: string, title: string, done: boolean): Promise<Task[]> {
+        const tasks = await this.taskRepository.findTasksByTitleOrStatus(userId,title,done);
         return tasks;
     }
 }
