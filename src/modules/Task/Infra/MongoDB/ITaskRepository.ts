@@ -1,5 +1,5 @@
 import { Task } from '../../Entities/Task';
-
+// Interface ITaskRepository para garantir o baixo acoplamento entre tecnologia utilizada no banco de dados e o nosso código
 interface ITaskRepository {
     createTask(userId: string, title: string, description: string, done: boolean, created_at: Date, updated_at: Date): Promise<void>;
     findTasksByTitleOrStatus(userId: string, title: string, done: boolean): Promise<Task[]>;

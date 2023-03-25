@@ -1,3 +1,4 @@
+// Tipo criado para Tipar corretamente o array que guarda o refresh token e a data que ele foi criado
 export type RefreshArray = {
     refreshToken: string,
     created_at: Date,

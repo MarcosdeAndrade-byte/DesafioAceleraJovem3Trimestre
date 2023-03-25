@@ -7,8 +7,10 @@ class DeleteTaskController {
         try {
             const { taskId } = request.params;
             const { userId } = request.user;
+
             const createTaskUseCase = container.resolve(DeleteTaskUseCase);
             await createTaskUseCase.execute(taskId, userId);
+            
             return response.status(200).send('OK');
         } catch (error) {
             return response.status(400).send(error.message);

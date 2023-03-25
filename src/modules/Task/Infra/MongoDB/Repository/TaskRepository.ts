@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 import { connect } from '../../../../../shared/mongodb';
 import { Task } from '../../../Entities/Task';
 import { ITaskRepository } from '../ITaskRepository';
-
+// repositório com métodos para manipulação do bd
 class TaskRepository implements ITaskRepository{
     async findTaskById(taskId: string): Promise<Task[]> {
         const db = await connect();

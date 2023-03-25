@@ -3,6 +3,7 @@ import { connect } from '../../../../../shared/mongodb';
 import { RefreshArray, User } from '../../../Entities/User';
 import { IUserRepository } from '../IUserRepository';
 
+// Metodos para manipulação do repositório
 class UserRepository implements IUserRepository {
 
     async findUserByEmail(email: string): Promise<User> {

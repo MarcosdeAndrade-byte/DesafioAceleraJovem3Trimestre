@@ -2,7 +2,8 @@ import { Router } from 'express';
 import { CreateUserController } from '../../modules/User/UseCase/CreateUser/CreateUserController';
 import { LoginUserController } from '../../modules/User/UseCase/login/LoginUserController';
 import { RefreshTokenController } from '../../modules/User/UseCase/RefreshToken/RefreshTokenController';
-import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+
+// Router utilizado para uma melhor divisão de responsabilidades e organização
 
 const userRoutes = Router();
 
@@ -13,10 +14,5 @@ const refreshTokenController = new RefreshTokenController();
 userRoutes.post('/', createUserController.handle);
 userRoutes.post('/login', loginUserController.handle);
 userRoutes.post('/refresh', refreshTokenController.handle);
-
-
-userRoutes.get('/teste',ensureAuthenticated, (request,response) => {
-    response.status(200).send('<h1>TESTE</h1>');
-});
 
 export { userRoutes };

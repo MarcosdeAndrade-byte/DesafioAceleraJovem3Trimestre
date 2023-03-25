@@ -4,5 +4,6 @@ import { TaskRepository } from '../../modules/Task/Infra/MongoDB/Repository/Task
 import { IUserRepository } from '../../modules/User/Infra/MongoDB/IUserRepository';
 import { UserRepository } from '../../modules/User/Infra/MongoDB/Repository/UserRepository';
 
+// Criação de containers para injeção de dependências da biblioteca tsyringe
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 container.registerSingleton<ITaskRepository>('TaskRepository', TaskRepository);

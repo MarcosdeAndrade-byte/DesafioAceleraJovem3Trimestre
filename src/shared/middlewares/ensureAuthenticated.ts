@@ -7,6 +7,7 @@ interface ITokenProperties {
     sub: string;
 }
 
+// middleware para autenticação das rotas
 export async function ensureAuthenticated(
     request: Request,
     response: Response,

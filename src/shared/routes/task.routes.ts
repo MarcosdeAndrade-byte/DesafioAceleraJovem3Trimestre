@@ -6,6 +6,8 @@ import { ListTaskByIdController } from '../../modules/Task/UseCase/ListTaskById/
 import { UpdatedTaskController } from '../../modules/Task/UseCase/UpdateTask/UpdateTaskController';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
+// Router utilizado para uma melhor divisão de responsabilidades e organização
+
 const routerTasks = Router();
 
 const createTaskController = new CreateTaskController();

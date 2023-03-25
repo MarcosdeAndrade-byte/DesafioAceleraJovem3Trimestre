@@ -10,6 +10,7 @@ class CreateTaskController {
 
             const createTaskUseCase = container.resolve(CreateTaskUseCase);
             await createTaskUseCase.execute(userId, title, description, done);
+
             return response.status(200).send('OK');
         } catch (error) {
             return response.status(400).send(error.message);
