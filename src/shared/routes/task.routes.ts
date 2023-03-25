@@ -20,6 +20,6 @@ routerTasks.post('/', createTaskController.handle);
 routerTasks.get('/', listTaskController.handle);
 routerTasks.get('/specific/:taskId', listTaskByIdController.handle);
 routerTasks.put('/', updatedTaskController.handle);
-routerTasks.delete('/', deleteTaskController.handle);
+routerTasks.delete('/:taskId', deleteTaskController.handle);
 
 export { routerTasks };
