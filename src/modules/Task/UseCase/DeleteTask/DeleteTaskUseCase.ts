@@ -9,10 +9,10 @@ class DeleteTaskUseCase {
     ) {}
 
     async execute(taskId: string, userId: string): Promise<void> {
-        const verificationTasExist = this.taskRepository.findTaskById(taskId);
+        const verificationTasExist = await this.taskRepository.findTaskById(taskId);
 
-        if(!verificationTasExist) {
-            throw new Error('A task não foi encontrada no sistema!');
+        if(verificationTasExist.length === 0) {
+            throw new Error('Task não encontrada no sistema!');
         }
 
         this.taskRepository.deleteTaskById(taskId, userId);

@@ -6,7 +6,7 @@ interface ITaskRepository {
     listTaskById(taskId: string): Promise<Task>;
     updatedTask(userId: string, taskId: string, title: string, description: string, done: boolean, updated_at: Date): Promise<void>;
     deleteTaskById(taskId: string, userId: string): Promise<void>;
-    findTaskById(taskId: string): Promise<Task>;
+    findTaskById(taskId: string): Promise<Task[]>;
 }
 
 export { ITaskRepository };

@@ -10,13 +10,15 @@ class ListTaskByIdUseCase {
     ) {}
 
     async execute(userId: string): Promise<Task> {
-        const tasks = await this.taskRepository.listTaskById(userId);
+        const checkIfTaskExists = await this.taskRepository.findTaskById(userId);
 
-        if(!tasks) {
-            throw new Error('Task não encontrada!');
+        if(checkIfTaskExists.length === 0) {
+            throw new Error('Task não encontrada no sistema!');
         }
 
-        return tasks;
+        const task = await this.taskRepository.listTaskById(userId);
+
+        return task;
     }
 }
 

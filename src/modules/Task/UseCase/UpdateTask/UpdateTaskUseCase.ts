@@ -11,8 +11,13 @@ class UpdatedTaskUseCase {
 
     async execute(userId: string, taskId: string, title: string, description: string, done: boolean): Promise<void> {
 
-        const { updated_at } = adjustDateForLocalTimezone(new Date());
+        const checkIfTaskExists = await this.taskRepository.findTaskById(taskId);
 
+        if(checkIfTaskExists.length === 0) {
+            throw new Error('Task não encontrada no sistema!');
+        }
+
+        const { updated_at } = adjustDateForLocalTimezone(new Date());
         await this.taskRepository.updatedTask(userId, taskId, title, description, done, updated_at);
     }
 }

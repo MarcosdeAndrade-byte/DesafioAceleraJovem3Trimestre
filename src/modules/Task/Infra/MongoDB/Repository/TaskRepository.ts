@@ -4,10 +4,10 @@ import { Task } from '../../../Entities/Task';
 import { ITaskRepository } from '../ITaskRepository';
 
 class TaskRepository implements ITaskRepository{
-    async findTaskById(taskId: string): Promise<Task> {
+    async findTaskById(taskId: string): Promise<Task[]> {
         const db = await connect();
         const filter = {_id: new ObjectId(taskId)};
-        const task = await db.collection('Tasks').find(filter) as unknown as Task;
+        const task = db.collection('Tasks').find(filter).toArray() as unknown as Task[];
         return task;
     }
 
