@@ -7,25 +7,22 @@ let singleton: Db;
 
 // Função para criação do banco de dados
 async function connect() {
-
-    // Lógica para reaproveitar conexões do banco de dados (Padrão Singleton)
-    if(singleton) {
-        return singleton;
-    }
-
-    await client.connect();
-
-    console.log('Connected successfully to server');
-
-    singleton = client.db(dbName);
-
-    await singleton.collection('Tasks').createIndex({ title: 'text' });
-
+  // Lógica para reaproveitar conexões do banco de dados (Padrão Singleton)
+  if (singleton) {
     return singleton;
+  }
+
+  await client.connect();
+
+  console.log('Connected successfully to server');
+
+  singleton = client.db(dbName);
+
+  await singleton.collection('Tasks').createIndex({ title: 'text' });
+
+  return singleton;
 }
 
 export { connect };
 
-connect()
-    .then(console.log)
-    .catch(console.error);
+connect().then(console.log).catch(console.error);
