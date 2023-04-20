@@ -1,11 +1,11 @@
 import { ObjectId } from 'mongodb';
-import { connect } from '../../../../../shared/mongodb';
+import { databaseConnect } from '../../../../../shared/mongodb';
 import { Task } from '../../../Entities/Task';
 import { ITaskRepository } from '../ITaskRepository';
-// repositório com métodos para manipulação do bd
+
 class TaskRepository implements ITaskRepository {
   async findTaskById(taskId: string): Promise<Task[]> {
-    const db = await connect();
+    const db = await databaseConnect();
     const filter = { _id: new ObjectId(taskId) };
     const task = db
       .collection('Tasks')
@@ -15,7 +15,7 @@ class TaskRepository implements ITaskRepository {
   }
 
   async deleteTaskById(taskId: string, userId: string): Promise<void> {
-    const db = await connect();
+    const db = await databaseConnect();
     const filter = { _id: new ObjectId(taskId), userId: userId };
     await db.collection('Tasks').findOneAndDelete(filter);
   }
@@ -28,7 +28,7 @@ class TaskRepository implements ITaskRepository {
     done: boolean,
     updated_at: Date
   ): Promise<void> {
-    const db = await connect();
+    const db = await databaseConnect();
     const filter = { _id: new ObjectId(taskId), userId: userId };
     const update = {
       $set: {
@@ -42,7 +42,7 @@ class TaskRepository implements ITaskRepository {
   }
 
   async listTaskById(taskId: string): Promise<Task> {
-    const db = await connect();
+    const db = await databaseConnect();
     const filter = { _id: new ObjectId(taskId) };
     const task = (await db
       .collection('Tasks')
@@ -55,7 +55,7 @@ class TaskRepository implements ITaskRepository {
     title: string,
     done: boolean
   ): Promise<Task[]> {
-    const db = await connect();
+    const db = await databaseConnect();
 
     const filter = {};
     if (title !== undefined) {
@@ -92,7 +92,7 @@ class TaskRepository implements ITaskRepository {
     created_at: Date,
     updated_at: Date
   ): Promise<void> {
-    const db = await connect();
+    const db = await databaseConnect();
     db.collection('Tasks').insertOne({
       userId,
       title,
