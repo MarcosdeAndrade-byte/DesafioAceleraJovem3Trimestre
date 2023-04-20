@@ -1,28 +1,23 @@
+import dotenv from 'dotenv';
 import { Db, MongoClient } from 'mongodb';
 
-const client = new MongoClient('mongodb://127.0.0.1:27017');
-const dbName = 'todoApp';
+dotenv.config();
 
-let singleton: Db;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}.${process.env.DB_CODE}.mongodb.net/?retryWrites=true&w=majority`;
+const client = new MongoClient(uri);
 
-// Função para criação do banco de dados
-async function connect() {
-  // Lógica para reaproveitar conexões do banco de dados (Padrão Singleton)
-  if (singleton) {
-    return singleton;
+async function databaseConnect(): Promise<Db> {
+  try {
+    client.connect();
+
+    const database = client.db(process.env.DB_NAME);
+
+    console.log('Conectado ao banco de dados🚀');
+
+    return database;
+  } catch (error) {
+    return error;
   }
-
-  await client.connect();
-
-  console.log('Connected successfully to server');
-
-  singleton = client.db(dbName);
-
-  await singleton.collection('Tasks').createIndex({ title: 'text' });
-
-  return singleton;
 }
 
-export { connect };
-
-connect().then(console.log).catch(console.error);
+export { databaseConnect };
