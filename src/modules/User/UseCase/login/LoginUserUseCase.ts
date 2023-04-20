@@ -2,11 +2,15 @@ import { compare } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 import { IUserRepository } from '../../Infra/MongoDB/IUserRepository';
 import jwt from 'jsonwebtoken';
+import { AppError } from '../../../../shared/Errors/AppError';
+import { RefreshArray } from '../../Entities/User';
 interface IUserLoginResponse {
   user: {
     _id: string;
     email: string;
+    name: string;
     password: string;
+    refreshToken: RefreshArray[];
   };
   token: string;
 }
@@ -22,13 +26,13 @@ class LoginUserUseCase {
     const userByEmail = await this.userRepository.findUserByEmail(email);
 
     if (!userByEmail) {
-      throw new Error('Senha ou email incorretos');
+      throw new AppError('Senha ou email incorretos', 400);
     }
 
     const passwordVerification = await compare(password, userByEmail.password);
 
     if (!passwordVerification) {
-      throw new Error('Senha ou email incorretos');
+      throw new AppError('Senha ou email incorretos', 400);
     }
 
     const token = jwt.sign({ email }, 'SEGREDO', {
@@ -50,7 +54,13 @@ class LoginUserUseCase {
     const user = await this.userRepository.findUserByEmail(email);
 
     const userInformationAndToken = {
-      user,
+      user: {
+        _id: user._id,
+        email: user.email,
+        name: user.name,
+        password: user.password,
+        refreshToken: user.refresh_token,
+      },
       token,
     } as IUserLoginResponse;
 
