@@ -1,12 +1,12 @@
 import { FindOneAndUpdateOptions, ObjectId } from 'mongodb';
-import { connect } from '../../../../../shared/mongodb';
+import { databaseConnect } from '../../../../../shared/mongodb';
 import { RefreshArray, User } from '../../../Entities/User';
 import { IUserRepository } from '../IUserRepository';
 
 // Metodos para manipulação do repositório
 class UserRepository implements IUserRepository {
   async findUserByEmail(email: string): Promise<User> {
-    const db = await connect();
+    const db = await databaseConnect();
     const user = await db.collection('User').findOne({ email });
     return user as unknown as User;
   }
@@ -17,7 +17,7 @@ class UserRepository implements IUserRepository {
     password: string
   ): Promise<void> {
     const refresh_token: RefreshArray[] = [];
-    const db = await connect();
+    const db = await databaseConnect();
     db.collection('User').insertOne({ name, email, password, refresh_token });
   }
 
@@ -26,7 +26,7 @@ class UserRepository implements IUserRepository {
     refreshToken: string,
     created_at: Date
   ): Promise<void> {
-    const db = await connect();
+    const db = await databaseConnect();
 
     const filter = { _id: new ObjectId(id) };
     const update = { $set: { refresh_token: [refreshToken, created_at] } };
