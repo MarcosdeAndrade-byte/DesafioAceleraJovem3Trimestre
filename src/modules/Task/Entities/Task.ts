@@ -14,7 +14,8 @@ class Task {
     description: string,
     done: boolean,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    _id: string
   ) {
     this.userId = userId;
     this.title = title;
@@ -22,6 +23,7 @@ class Task {
     this.done = done;
     this.created_at = created_at;
     this.updated_at = updated_at;
+    this._id = _id;
   }
 }
 

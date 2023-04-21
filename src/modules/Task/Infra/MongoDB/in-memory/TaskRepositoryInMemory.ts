@@ -1,7 +1,7 @@
 import { Task } from '../../../Entities/Task';
 import { ITaskRepository } from '../ITaskRepository';
 
-class TaskRepository implements ITaskRepository {
+class TaskRepositoryInMemory implements ITaskRepository {
   private tasks: Task[] = [];
 
   async findTaskById(taskId: string): Promise<Task[]> {
@@ -51,7 +51,7 @@ class TaskRepository implements ITaskRepository {
       (task) =>
         task.userId === userId &&
         (!title || task.title.toLowerCase().includes(title.toLowerCase())) &&
-        (done === undefined || task.done === done)
+        task.done === done
     );
     return tasks;
   }
@@ -62,7 +62,8 @@ class TaskRepository implements ITaskRepository {
     description: string,
     done: boolean,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    _id?: string
   ): Promise<void> {
     const task = new Task(
       userId,
@@ -70,10 +71,11 @@ class TaskRepository implements ITaskRepository {
       description,
       done,
       created_at,
-      updated_at
+      updated_at,
+      _id
     );
     this.tasks.push(task);
   }
 }
 
-export { TaskRepository };
+export { TaskRepositoryInMemory };

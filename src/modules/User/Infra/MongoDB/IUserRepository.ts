@@ -9,6 +9,7 @@ interface IUserRepository {
     refreshToken: string,
     created_at: Date
   ): Promise<void>;
+  findUserById(userId: string): Promise<User>;
 }
 
 export { IUserRepository };

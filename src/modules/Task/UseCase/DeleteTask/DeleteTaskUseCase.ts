@@ -1,5 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { ITaskRepository } from '../../Infra/MongoDB/ITaskRepository';
+import { AppError } from '../../../../shared/Errors/AppError';
 
 @injectable()
 class DeleteTaskUseCase {
@@ -12,10 +13,10 @@ class DeleteTaskUseCase {
     const verificationTasExist = await this.taskRepository.findTaskById(taskId);
 
     if (verificationTasExist.length === 0) {
-      throw new Error('Task não encontrada no sistema!');
+      throw new AppError('Task não encontrada no sistema!', 400);
     }
 
-    this.taskRepository.deleteTaskById(taskId, userId);
+    await this.taskRepository.deleteTaskById(taskId, userId);
   }
 }
 

@@ -5,6 +5,12 @@ import { IUserRepository } from '../IUserRepository';
 
 // Metodos para manipulação do repositório
 class UserRepository implements IUserRepository {
+  async findUserById(userId: string): Promise<User> {
+    const db = await databaseConnect();
+    const user = await db.collection('User').findOne({ _id: new ObjectId(userId) });
+    return user as unknown as User;
+  }
+
   async findUserByEmail(email: string): Promise<User> {
     const db = await databaseConnect();
     const user = await db.collection('User').findOne({ email });

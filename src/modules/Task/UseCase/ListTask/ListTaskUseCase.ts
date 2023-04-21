@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { Task } from '../../Entities/Task';
 import { ITaskRepository } from '../../Infra/MongoDB/ITaskRepository';
+import { AppError } from '../../../../shared/Errors/AppError';
 
 @injectable()
 class ListTaskUseCase {
@@ -17,7 +18,7 @@ class ListTaskUseCase {
     );
 
     if (tasks.length === 0) {
-      throw new Error('Task não encontrada!');
+      throw new AppError('Task não encontrada!', 400);
     }
 
     return tasks;

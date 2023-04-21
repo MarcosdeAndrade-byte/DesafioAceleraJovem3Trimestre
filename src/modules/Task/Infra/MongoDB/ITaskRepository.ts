@@ -7,7 +7,8 @@ interface ITaskRepository {
     description: string,
     done: boolean,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    _id?: string
   ): Promise<void>;
   findTasksByTitleOrStatus(
     userId: string,

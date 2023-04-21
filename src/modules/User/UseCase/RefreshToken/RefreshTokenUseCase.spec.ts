@@ -17,7 +17,7 @@ describe('RefreshTokenUseCase', () => {
     refreshTokenUseCase = new RefreshTokenUseCase(usersRepositoryInMemory);
   });
 
-  it('should be refresh token', async () => {
+  it('should be create a refresh token', async () => {
     await createUserUseCase.execute(
       'John Doe',
       'john.alabama@hotmail.com',

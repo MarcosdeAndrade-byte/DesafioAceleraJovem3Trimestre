@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { adjustDateForLocalTimezone } from '../../../../shared/provider/DateProvider/DateProvider';
 import { ITaskRepository } from '../../Infra/MongoDB/ITaskRepository';
+import { AppError } from '../../../../shared/Errors/AppError';
 
 @injectable()
 class UpdatedTaskUseCase {
@@ -19,7 +20,7 @@ class UpdatedTaskUseCase {
     const checkIfTaskExists = await this.taskRepository.findTaskById(taskId);
 
     if (checkIfTaskExists.length === 0) {
-      throw new Error('Task não encontrada no sistema!');
+      throw new AppError('Task não encontrada no sistema!', 400);
     }
 
     const { updated_at } = adjustDateForLocalTimezone(new Date());

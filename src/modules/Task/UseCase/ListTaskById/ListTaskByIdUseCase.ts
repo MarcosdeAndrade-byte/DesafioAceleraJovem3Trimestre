@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { Task } from '../../Entities/Task';
 import { ITaskRepository } from '../../Infra/MongoDB/ITaskRepository';
+import { AppError } from '../../../../shared/Errors/AppError';
 
 @injectable()
 class ListTaskByIdUseCase {
@@ -13,7 +14,7 @@ class ListTaskByIdUseCase {
     const checkIfTaskExists = await this.taskRepository.findTaskById(userId);
 
     if (checkIfTaskExists.length === 0) {
-      throw new Error('Task não encontrada no sistema!');
+      throw new AppError('Task não encontrada no sistema!');
     }
 
     const task = await this.taskRepository.listTaskById(userId);
