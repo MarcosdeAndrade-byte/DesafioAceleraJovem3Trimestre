@@ -2,10 +2,8 @@ import 'reflect-metadata';
 import { AppError } from '../../../../shared/Errors/AppError';
 import { InMemoryUsersRepository } from '../../../User/Infra/in-memory/UserRepositoryInMemory';
 import { TaskRepositoryInMemory } from '../../Infra/MongoDB/in-memory/TaskRepositoryInMemory';
-import { CreateTaskUseCase } from '../CreateTask/CreateTaskUseCase';
 import { ListTaskByIdUseCase } from './ListTaskByIdUseCase';
 
-let createTaskUseCase: CreateTaskUseCase;
 let listTaskByIdUseCase: ListTaskByIdUseCase;
 let taskRepositoryInMemory: TaskRepositoryInMemory;
 let inMemoryUsersRepository: InMemoryUsersRepository;
@@ -15,10 +13,6 @@ describe('ListTaskByIdUseCase', () => {
     taskRepositoryInMemory = new TaskRepositoryInMemory();
     inMemoryUsersRepository = new InMemoryUsersRepository();
     listTaskByIdUseCase = new ListTaskByIdUseCase(taskRepositoryInMemory);
-    createTaskUseCase = new CreateTaskUseCase(
-      taskRepositoryInMemory,
-      inMemoryUsersRepository
-    );
   });
 
   it('It should be possible to list a Task by id', async () => {
