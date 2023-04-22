@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 import { UserRepository } from '../../modules/User/Infra/MongoDB/Repository/UserRepository';
+import { AppError } from '../Errors/AppError';
 
 interface ITokenProperties {
   email: string;
@@ -17,7 +18,7 @@ export async function ensureAuthenticated(
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-      throw new Error('Token missing');
+      throw new AppError('Token missing', 400);
     }
 
     const [, token] = authHeader.split(' ');
@@ -28,16 +29,18 @@ export async function ensureAuthenticated(
     const user = await userRepository.findUserByEmail(email);
 
     if (!user) {
-      throw new Error('Token inválido');
+      throw new AppError('Token inválido', 400);
     }
 
     request.user = {
       userId: sub,
       email: email,
     };
-  } catch (error) {
-    return response.status(400).json(error);
-  }
 
-  next();
+    next();
+  } catch (error) {
+    if (error instanceof AppError) {
+      return new AppError(error.message, error.statusCode);
+    }
+  }
 }
