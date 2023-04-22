@@ -3,7 +3,6 @@ import { InMemoryUsersRepository } from '../../Infra/in-memory/UserRepositoryInM
 import { CreateUserUseCase } from '../CreateUser/CreateUserUseCase';
 import { LoginUserUseCase } from '../login/LoginUserUseCase';
 import { RefreshTokenUseCase } from './RefreshTokenUseCase';
-import { AppError } from '../../../../shared/Errors/AppError';
 import { JsonWebTokenError } from 'jsonwebtoken';
 
 let usersRepositoryInMemory: InMemoryUsersRepository;

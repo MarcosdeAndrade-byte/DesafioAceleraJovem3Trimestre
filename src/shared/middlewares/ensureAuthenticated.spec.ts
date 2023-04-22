@@ -4,7 +4,6 @@ import { ensureAuthenticated } from './ensureAuthenticated';
 import { InMemoryUsersRepository } from '../../modules/User/Infra/in-memory/UserRepositoryInMemory';
 import { CreateUserUseCase } from '../../modules/User/UseCase/CreateUser/CreateUserUseCase';
 import { AppError } from '../Errors/AppError';
-import { verify } from 'jsonwebtoken';
 
 jest.mock(
   'jsonwebtoken',
@@ -39,9 +38,6 @@ jest.mock('../../modules/User/Infra/MongoDB/Repository/UserRepository', () => {
 
 let usersRepositoryInMemory: InMemoryUsersRepository;
 let createUserUseCase: CreateUserUseCase;
-let req: Request;
-let res: Response;
-let next: NextFunction;
 
 describe('ensureAuthenticated', () => {
   beforeEach(() => {
