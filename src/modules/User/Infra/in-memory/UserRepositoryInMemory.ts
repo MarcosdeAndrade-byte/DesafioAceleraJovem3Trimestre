@@ -6,14 +6,29 @@ class InMemoryUsersRepository implements IUserRepository {
 
   private id = 1;
 
+  async deleteById(userId: string) {
+    const index = this.users.findIndex((user) => user._id === userId);
+
+    if (index === -1) {
+      throw new Error('User not found');
+    }
+
+    this.users.splice(index, 1);
+  }
+
   async findUserById(userId: string): Promise<User> {
     const user = this.users.find((u) => u._id === userId);
     return user;
   }
 
-  async findUserByEmail(email: string): Promise<User> {
+  async findUserByEmail(email: string): Promise<User | null> {
     const user = this.users.find((u) => u.email === email);
-    return user ?? null;
+
+    if (!user) {
+      return null;
+    }
+
+    return user;
   }
 
   async createUser(
@@ -39,7 +54,6 @@ class InMemoryUsersRepository implements IUserRepository {
   ): Promise<void> {
     const index = this.users.findIndex((u) => u._id === id);
     if (index === -1) {
-      console.log('DEU RUIM');
       throw new Error(`User with id ${id} not found`);
     }
 
