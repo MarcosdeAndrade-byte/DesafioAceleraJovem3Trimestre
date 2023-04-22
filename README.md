@@ -6,7 +6,6 @@ de estudos.
 
 O projeto se trata de uma API que faz o gerenciamento de tarefas [documentação](https://cedar-bug-a05.notion.site/Desafio-Acelera-Jovem-Back-End-3-Trimestre-81e70b8a429144518d1243e108e6171e)
 
-
 ## 🚀 Começando
 Para obter uma cópia do projeto,basta clonar o repositório ou baixar o arquivo zip. 
 
@@ -17,6 +16,12 @@ De que coisas você precisa para instalar o software e como instalá-lo?
 ```
 Conhecimento básico em ambientes de desenvolvimento e banco de dados
 ```
+
+## 📼 Tutorial em vídeo
+
+https://www.loom.com/share/c1c08215428c4524932a53e442c1d8bb
+
+https://www.loom.com/share/efccc99da70743f38e719764194493f0
 
 ### 🔧 Instalação
 Depois de ter clonado ou baixado o arquivo:
