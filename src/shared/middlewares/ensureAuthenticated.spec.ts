@@ -68,7 +68,7 @@ describe('ensureAuthenticated', () => {
 
     await ensureAuthenticated(req, res, next);
 
-    expect(req.user).toHaveProperty('id');
+    expect(req.user).toEqual({ email: 'email@teste.com', userId: '1' });
   });
 
   it('It must not be possible to authenticate a user who did not send the token', async () => {
