@@ -32,6 +32,12 @@ git clone -> npm install  -> npx husky install -> [instalar banco de dados mongo
 * [Insomnia](https://insomnia.rest/download) - Ferramenta de teste e documentação dos endpoints
 * [Mongodb](https://www.mongodb.com/) - Banco de dados mongodb
 
+## 🤡 Testes de software
+Para rodar nossos testes vamos executar o seguinte comando:
+```
+npm run test
+```
+
 ## 📌 Versão
 
 Nós usamos o Git para controle de versão. Para as versões disponíveis, observe os commits deste repositório.
