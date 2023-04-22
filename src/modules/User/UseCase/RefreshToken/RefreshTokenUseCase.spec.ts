@@ -3,6 +3,8 @@ import { InMemoryUsersRepository } from '../../Infra/in-memory/UserRepositoryInM
 import { CreateUserUseCase } from '../CreateUser/CreateUserUseCase';
 import { LoginUserUseCase } from '../login/LoginUserUseCase';
 import { RefreshTokenUseCase } from './RefreshTokenUseCase';
+import { AppError } from '../../../../shared/Errors/AppError';
+import { JsonWebTokenError } from 'jsonwebtoken';
 
 let usersRepositoryInMemory: InMemoryUsersRepository;
 let createUserUseCase: CreateUserUseCase;
@@ -10,7 +12,7 @@ let loginUserUseCase: LoginUserUseCase;
 let refreshTokenUseCase: RefreshTokenUseCase;
 
 describe('RefreshTokenUseCase', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     usersRepositoryInMemory = new InMemoryUsersRepository();
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
     loginUserUseCase = new LoginUserUseCase(usersRepositoryInMemory);
@@ -35,5 +37,11 @@ describe('RefreshTokenUseCase', () => {
 
     expect(newRefreshTokenAndToken).toHaveProperty('token');
     expect(newRefreshTokenAndToken).toHaveProperty('refresh_token');
+  });
+
+  it('should not be create a refresh token', async () => {
+    await expect(refreshTokenUseCase.execute('teste')).rejects.toBeInstanceOf(
+      JsonWebTokenError
+    );
   });
 });

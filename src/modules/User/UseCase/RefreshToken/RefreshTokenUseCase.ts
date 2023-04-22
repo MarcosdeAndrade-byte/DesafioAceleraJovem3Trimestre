@@ -1,6 +1,7 @@
 import jwt, { sign, verify } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import { IUserRepository } from '../../Infra/MongoDB/IUserRepository';
+import { AppError } from '../../../../shared/Errors/AppError';
 
 interface ITokenProperties {
   email: string;
@@ -26,7 +27,7 @@ class RefreshTokenUseCase {
     const user = await this.userRepository.findUserByEmail(email);
 
     if (!user) {
-      throw new Error('Refresh Token não existe!');
+      throw new AppError('Refresh Token não existe!', 400);
     }
 
     const JWTToken = jwt.sign({ email }, 'SEGREDO', {
