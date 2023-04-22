@@ -8,7 +8,7 @@
     "find-deadcode": "ts-prune",
     "precommit-ls": "lint-staged",
     "build": "tsc",
-    "lint": "eslint .",
+    "lint": "eslint",
     "test": "jest"
   },
   "lint-staged": {
