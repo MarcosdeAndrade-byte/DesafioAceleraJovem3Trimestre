@@ -23,6 +23,8 @@ https://www.loom.com/share/c1c08215428c4524932a53e442c1d8bb
 
 https://www.loom.com/share/efccc99da70743f38e719764194493f0
 
+https://www.loom.com/share/07f77431af6145fab411dbad04eea534
+
 ### 🔧 Instalação
 Depois de ter clonado ou baixado o arquivo:
 
