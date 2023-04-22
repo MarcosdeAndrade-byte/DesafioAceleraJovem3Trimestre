@@ -16,7 +16,7 @@ export async function ensureAuthenticated(
 ) {
   try {
     const authHeader = request.headers.authorization;
-
+    console.log(authHeader);
     if (!authHeader) {
       throw new AppError('Token missing', 400);
     }
@@ -40,7 +40,9 @@ export async function ensureAuthenticated(
     next();
   } catch (error) {
     if (error instanceof AppError) {
-      return new AppError(error.message, error.statusCode);
+      return response.status(error.statusCode).json(error.message);
     }
+
+    return response.status(400).json(error);
   }
 }

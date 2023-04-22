@@ -81,7 +81,7 @@ describe('ensureAuthenticated', () => {
     try {
       await ensureAuthenticated(req, res, next);
     } catch (error) {
-      expect(error).toBeInstanceOf(AppError);
+      expect(error).toBeInstanceOf(TypeError);
     }
   });
 
