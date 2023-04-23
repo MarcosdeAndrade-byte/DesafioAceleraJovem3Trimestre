@@ -29,7 +29,7 @@ https://www.loom.com/share/07f77431af6145fab411dbad04eea534
 Depois de ter clonado ou baixado o arquivo:
 
 ```
-git clone -> npm install  -> npx husky install -> [instalar banco de dados mongodb](https://www.mongodb.com/try/download/community) -> npm run dev
+git clone -> npm install  -> npx husky install -> npm run dev (O arquivo .env deve ser enviado separadamente para o bom funcionamento do código)
 ```
 ## 🛠️ Construído com
 
