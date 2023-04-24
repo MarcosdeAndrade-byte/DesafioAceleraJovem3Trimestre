@@ -1,10 +1,10 @@
-# Desafio acelera jovem 3 trimestre
+# Desafio acelera jovem 3/4 trimestre
 
 Desafio proposto pelo time de People e desenvolvedores da Sidelab com o \
-intuito de certificar meus conhecimentos adquiridos no capitulo 3 da trilha \
+intuito de certificar meus conhecimentos adquiridos no capitulo 3 e 4 da trilha \
 de estudos.
 
-O projeto se trata de uma API que faz o gerenciamento de tarefas [documentação](https://cedar-bug-a05.notion.site/Desafio-Acelera-Jovem-Back-End-3-Trimestre-81e70b8a429144518d1243e108e6171e)
+O projeto se trata de uma API que faz o gerenciamento de tarefas [documentação](https://cedar-bug-a05.notion.site/Desafio-Acelera-Jovem-Back-End-3-Trimestre-81e70b8a429144518d1243e108e6171e). Com o intuito de treinar novas habilidades o mesmo desafio foi utilizado nesse último trimestre [documentação2](https://cedar-bug-a05.notion.site/Desafio-Acelera-Jovem-Back-End-4-Trimestre-dc7a8d34adb8486ba98dac1f07c07ea3).
 
 ## 🚀 Começando
 Para obter uma cópia do projeto,basta clonar o repositório ou baixar o arquivo zip. 
